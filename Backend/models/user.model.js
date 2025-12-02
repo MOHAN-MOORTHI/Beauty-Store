@@ -5,33 +5,33 @@ const userSchema = mongoose.Schema(
   {
     name: {
       type: String,
-      require: true,
+      require: true
     },
     email: {
       type: String,
-      require: true,
+      require: true
     },
     password: {
       type: String,
-      require: true,
+      require: true
     },
     address: {
-      type: String,
+      type: String
     },
     phone: {
-      type: String,
+      type: String
     },
     role: {
       type: String,
-      default: "user",
+      default: "user"
     },
     status: {
       type: Number,
-      default: 0,
+      default: 0
     },
   },
   {
-    timestampes: true,
+    timestampes: true
   }
 );
 
