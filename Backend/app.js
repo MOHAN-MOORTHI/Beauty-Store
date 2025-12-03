@@ -3,7 +3,7 @@ import cors from "cors";
 import cookieParser from "cookie-parser";
 import { errorHandler, notFound } from "./Middleware/error.middleware.js";
 import authRoute from "./Routes/auth.route.js";
-import productRoute from "./Routes/auth.route.js"
+import productRoute from "./Routes/product.route.js";
 
 const app = express();
 
