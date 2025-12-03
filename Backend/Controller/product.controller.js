@@ -55,58 +55,59 @@ const getProduct = asyncHandler(async (req, res) => {
   }
 });
 
+// GET ALL PRODUCTS
 
-// GET ALL PRODUCTS 
+const getAllproducts = asyncHandler(async (req, res) => {
+  const qNew = req.query.new;
+  const qCategory = req.query.category;
+  const qsearch = req.query.search;
+  let products;
 
-const getAllproducts = asyncHandler(async(req, res)=>{
-    const qNew = req.query.new;
-    const qCategory = req.query.category;
-    const qsearch = req.query.search;
-    let products;
-
-    if(eNew){
-        products = await Product.find().sort({createdAt: -1});
-
-    }else if(qCategory){
-        products = await Product.find({categories: {$in: [qCategory]}});
-
-    }else if(qsearch){
-        products = await Product.find({
-            $text:{
-                $search : qsearch,
-                $caseSensitive: false,
-                $dicriticSensitive: false,
-            } 
-        })
-    }else{
-        products = await Product.find().sort({createdAt: -1});
-    }
+  if (eNew) {
+    products = await Product.find().sort({ createdAt: -1 });
+  } else if (qCategory) {
+    products = await Product.find({ categories: { $in: [qCategory] } });
+  } else if (qsearch) {
+    products = await Product.find({
+      $text: {
+        $search: qsearch,
+        $caseSensitive: false,
+        $dicriticSensitive: false,
+      },
+    });
+  } else {
+    products = await Product.find().sort({ createdAt: -1 });
+    res.status(200).json(products);
+  }
 });
 
+// RATING PRODUCT
 
-// RATING PRODUCT 
+const reatingProduct = asyncHandler(async (req, res) => {
+  const { stat, name, comment, postedBy } = req.body;
 
-const reatingProduct = asyncHandler(async(req, res)=>{
-    const {stat, name, comment, postedBy} = req.body;
-
-    if(stat && name && comment && postedBy){
-        const postedBy = await Product.findByIdAndUpdate(
-            req.params.id,
-            {
-                $push: {ratings: {star, name, comment, postedBy}},
-
-            },
-            {
-                new: true,
-            }
-        );
-        res.status(201).json("product was rated successfully")
-    } else{
-        res.status(400);
-        throw new Error("product was not rated successfully")
-    }
+  if (stat && name && comment && postedBy) {
+    const postedBy = await Product.findByIdAndUpdate(
+      req.params.id,
+      {
+        $push: { ratings: { star, name, comment, postedBy } },
+      },
+      {
+        new: true,
+      }
+    );
+    res.status(201).json("product was rated successfully");
+  } else {
+    res.status(400);
+    throw new Error("product was not rated successfully");
+  }
 });
 
-
-export { reatingProduct,getAllproducts, getProduct, createProduct, updateProduct, deleteProduct};
-
+export {
+  reatingProduct,
+  getAllproducts,
+  getProduct,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+};

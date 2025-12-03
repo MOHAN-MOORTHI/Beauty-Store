@@ -6,6 +6,7 @@ import authRoute from "./Routes/auth.route.js";
 import productRoute from "./Routes/product.route.js";
 import bannerRoute from "./Routes/banner.route.js";
 import userRoute from "./Routes/user.route.js";
+import orderRoute from "./Routes/order.route.js";
 
 const app = express();
 
@@ -22,7 +23,10 @@ app.use(cookieParser());
 app.use("api/v1/auth", authRoute);
 app.use("/api/v1/products", productRoute);
 app.use("/api/v1/banners", bannerRoute);
-app.use("/api/v1/users", userRoute)
+app.use("/api/v1/users", userRoute);
+app.use("/api/v1/orders", orderRoute);
+
+
 
 // Error Middleware
 app.use(errorHandler);
