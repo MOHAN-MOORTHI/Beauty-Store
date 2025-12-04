@@ -4,10 +4,9 @@ import dbConnection from "./util/db.js";
 dotenv.config();
 
 // SERVER
-const PORT = process.env.PORT; // .env file create PORT is secure port number
+const PORT = process.env.PORT;
 
-app.listen(PORT, () => {
-  // create the runing server port
-  console.log(`Server is runing on the port ${PORT}`);
-  dbConnection();
-});
+app.listen(PORT, () =>{
+    console.log(`Server is running on port ${PORT}`);
+    dbConnection();
+})

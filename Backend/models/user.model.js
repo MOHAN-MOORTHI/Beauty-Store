@@ -1,54 +1,56 @@
 import mongoose from "mongoose";
-import bcrypt from "bcryptjs";  // encryption the date using this package
-
+import bcrypt from "bcryptjs";
 const userSchema = mongoose.Schema(
   {
     name: {
       type: String,
-      require: true
+      require: true,
     },
+
     email: {
       type: String,
-      require: true
+      require: true,
     },
+
     password: {
       type: String,
-      require: true
+      require: true,
     },
+
     address: {
-      type: String
+      type: String,
     },
+
     phone: {
-      type: String
+      type: String,
     },
+
     role: {
       type: String,
-      default: "user"
+      default: "user",
     },
+
     status: {
       type: Number,
-      default: 0
+      default: 0,
     },
   },
   {
-    timestampes: true
+    timestamps: true,
   }
 );
 
-// user schema encryption
 userSchema.pre("save", async function (next) {
-  if(!this.isModified("password")){
+  if (!this.isModified("password")) {
     next();
   }
   const salt = await bcrypt.genSalt(10);
   this.password = await bcrypt.hash(this.password, salt);
-  
 });
 
 userSchema.methods.matchPassword = async function(enteredPassword){
-  return await bcrypt.compare(enteredPassword, this.password);
-};
+return await bcrypt.compare(enteredPassword, this.password);
+}
 
 const User = mongoose.model("User", userSchema);
-
 export default User;

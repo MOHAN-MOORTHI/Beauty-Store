@@ -1,13 +1,13 @@
 import Product from "../models/product.model.js";
 import asyncHandler from "express-async-handler";
 
-// CREATE PRODUCTS
+// CREATE PRODUCT
 const createProduct = asyncHandler(async (req, res) => {
   const newProduct = await Product(req.body);
   const product = newProduct.save();
 
   if (product) {
-    res.status(200).json(product);
+    res.status(201).json(product);
   } else {
     res.status(400);
     throw new Error("Product was not created");
@@ -15,6 +15,7 @@ const createProduct = asyncHandler(async (req, res) => {
 });
 
 // UPDATE PRODUCT
+
 const updateProduct = asyncHandler(async (req, res) => {
   const updatedProduct = await Product.findByIdAndUpdate(
     req.params.id,
@@ -28,18 +29,18 @@ const updateProduct = asyncHandler(async (req, res) => {
     res.status(400);
     throw new Error("Product has not been updated");
   } else {
-    res.status(200).json(updatedProduct);
+    res.status(201).json(updatedProduct);
   }
 });
 
-// DELETE PRODUCT
+//DELETE PRODUCT
 const deleteProduct = asyncHandler(async (req, res) => {
   const product = await Product.findByIdAndDelete(req.params.id);
   if (!product) {
     res.status(400);
-    throw new Error("Product was not deleted");
+    throw new Error("product was not deleted");
   } else {
-    res.status(201).json("product deleted successfully");
+    res.status(201).json("Product deleted successfully");
   }
 });
 
@@ -56,14 +57,14 @@ const getProduct = asyncHandler(async (req, res) => {
 });
 
 // GET ALL PRODUCTS
-
-const getAllproducts = asyncHandler(async (req, res) => {
+const getALLproducts = asyncHandler(async (req, res) => {
   const qNew = req.query.new;
   const qCategory = req.query.category;
   const qsearch = req.query.search;
+
   let products;
 
-  if (eNew) {
+  if (qNew) {
     products = await Product.find().sort({ createdAt: -1 });
   } else if (qCategory) {
     products = await Product.find({ categories: { $in: [qCategory] } });
@@ -72,23 +73,29 @@ const getAllproducts = asyncHandler(async (req, res) => {
       $text: {
         $search: qsearch,
         $caseSensitive: false,
-        $dicriticSensitive: false,
+        $diacriticSensitive: false,
       },
     });
   } else {
     products = await Product.find().sort({ createdAt: -1 });
-    res.status(200).json(products);
+   
   }
+  res.status(200).json(products)
 });
 
 // RATING PRODUCT
 
-const reatingProduct = asyncHandler(async (req, res) => {
-  const { stat, name, comment, postedBy } = req.body;
+const ratingProduct = asyncHandler(async (req, res) => {
+  const { star, name, comment, postedBy } = req.body;
 
-  if (stat && name && comment && postedBy) {
-    const postedBy = await Product.findByIdAndUpdate(
+  console.log(star, name, comment, postedBy)
+  console.log(req.params.id)
+
+
+  if (star) {
+    await Product.findByIdAndUpdate(
       req.params.id,
+
       {
         $push: { ratings: { star, name, comment, postedBy } },
       },
@@ -103,11 +110,4 @@ const reatingProduct = asyncHandler(async (req, res) => {
   }
 });
 
-export {
-  reatingProduct,
-  getAllproducts,
-  getProduct,
-  createProduct,
-  updateProduct,
-  deleteProduct,
-};
+export {ratingProduct, getALLproducts,getProduct, createProduct,updateProduct, deleteProduct}
