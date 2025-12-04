@@ -18,6 +18,7 @@ const sendWelcomeEmail = async () => {
             subject: "Welcome to Beauty Bliss",
             html: data,
           };
+
           try {
             await sendMail(messageoptions);
             await User.findByIdAndUpdate(user._id, { $set: { status: 1 } });
@@ -29,4 +30,5 @@ const sendWelcomeEmail = async () => {
     }
   }
 };
+
 export default sendWelcomeEmail;

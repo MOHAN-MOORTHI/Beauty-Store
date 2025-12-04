@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-
 const OrderSchema = mongoose.Schema(
   {
     name: {
@@ -18,25 +17,28 @@ const OrderSchema = mongoose.Schema(
       type: Number,
       require: true,
     },
+
     address: {
       type: String,
     },
+
     phone: {
       type: String,
     },
+
     email: {
       type: String,
     },
+
     status: {
       type: Number,
       default: 0,
     },
   },
   {
-    timestampes: true,
+    timestamps: true,
   }
 );
 
 const Order = mongoose.model("Order", OrderSchema);
-
 export default Order;

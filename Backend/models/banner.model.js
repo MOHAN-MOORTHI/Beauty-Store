@@ -1,5 +1,4 @@
-import mongoose, { trusted } from "mongoose";
-
+import mongoose from "mongoose";
 const BannerSchema = mongoose.Schema(
   {
     title: {
@@ -16,10 +15,9 @@ const BannerSchema = mongoose.Schema(
     },
   },
   {
-    timestampes: true,
+    timestamps: true,
   }
 );
 
 const Banner = mongoose.model("Banner", BannerSchema);
-
 export default Banner;

@@ -25,33 +25,29 @@ const deleteBanner = asyncHandler(async (req, res) => {
   }
 });
 
-// GET ALL BANNERS
-
+//GET ALL BANNERS
 const getAllBanners = asyncHandler(async (req, res) => {
   const banners = await Banner.find();
-
   if (!banners) {
     res.status(400);
-    throw new Error("Banner were not fetched or something went wrong");
+    throw new Error("Banners were not fetched or something went wrong");
   } else {
     res.status(200).json(banners);
   }
 });
 
-// GET RANDOM BANNER
-
+// GET RANDOM BANNNER
 const getRandomBanner = asyncHandler(async (req, res) => {
   const banners = await Banner.find();
 
   if (!banners) {
     res.status(400);
-    throw new Error("Banner were not fetched or something went wrong");
+    throw new Error("Banners were not fetched or something went wrong");
   } else {
     const randomIndex = Math.floor(Math.random() * banners.length);
     const randomBanner = banners[randomIndex];
     res.status(200).json(randomBanner);
   }
 });
-
 
 export {getAllBanners, createBanner, deleteBanner, getRandomBanner};

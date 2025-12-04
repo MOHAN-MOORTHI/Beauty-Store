@@ -3,18 +3,18 @@ import mongoose from "mongoose";
 const ProductSchema = mongoose.Schema({
   title: {
     type: String,
-    require: true,
+    required: true,
   },
   desc: {
     type: String,
-    require: true,
+    required: true,
   },
   whatinbox: {
     type: String,
   },
   img: {
-    type: String,
-    require: true,
+    type: [String], // Changed from String to Array of Strings
+    required: true,
   },
   video: {
     type: String,
@@ -26,18 +26,21 @@ const ProductSchema = mongoose.Schema({
     type: Number,
   },
   categories: {
-    type: Array,
+    type: [String], // Changed to array for consistency
   },
   concern: {
-    type: Array,
+    type: [String],
   },
   brand: {
     type: String,
   },
   skintype: {
-    type: Array,
+    type: [String],
   },
   originalPrice: {
+    type: Number,
+  },
+  discountedPrice: {
     type: Number,
   },
   inStock: {
@@ -52,9 +55,11 @@ const ProductSchema = mongoose.Schema({
       postedBy: { type: String },
     },
   ],
+}, {
+  timestamps: true // Added timestamps for better data management
 });
-ProductSchema.index({"$**":"text"})
+
+ProductSchema.index({"$**":"text"});
 
 const Product = mongoose.model("Product", ProductSchema);
-
 export default Product;

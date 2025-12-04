@@ -1,10 +1,10 @@
 import express from "express";
 const router = express.Router();
 import {
-  getAllBanners,
   createBanner,
-  deleteBanner,
+  getAllBanners,
   getRandomBanner,
+  deleteBanner,
 } from "../controller/banner.controller.js";
 
 // CREATE BANNER ROUTE
@@ -14,6 +14,7 @@ router.post("/", createBanner);
 router.get("/", getAllBanners);
 
 // DELETE BANNER ROUTE
+
 router.delete("/:id", deleteBanner);
 
 // GET RANDOM BANNER ROUTE

@@ -1,5 +1,4 @@
 import dotenv from "dotenv";
-
 dotenv.config();
 
 const notFound = (req, res, next) => {
@@ -23,4 +22,4 @@ const errorHandler = (err, req, res, next) => {
   });
 };
 
-export { errorHandler, notFound };
+export {errorHandler, notFound };

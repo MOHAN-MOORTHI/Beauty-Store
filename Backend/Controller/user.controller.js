@@ -16,7 +16,7 @@ const updateUser = asyncHandler(async (req, res) => {
     { new: true }
   );
 
-  if (!updateUser) {
+  if (!updatedUser) {
     res.status(400);
     throw new Error("User was not updated");
   } else {
@@ -35,34 +35,26 @@ const deleteUser = asyncHandler(async (req, res) => {
   }
 });
 
-
 // GET ONE USER
-
-const getUser = asyncHandler(async(req, res)=>{
-    const user = await User.findBy(req.params.id);
-    if(!user){
-        res.status(400);
-        throw new Error("User was not found");
-    } else {
-        res.status(200).json(user);
-    }
+const getUser = asyncHandler(async (req, res) => {
+  const user = await User.findBy(req.params.id);
+  if (!user) {
+    res.status(400);
+    throw new Error("User was not found");
+  } else {
+    res.status(200).json(user);
+  }
 });
 
-//  GET ALL USERS
-const getAllUsers = asyncHandler(async(req, res)=>{
+// GET ALL USERS
+const getAllUsers = asyncHandler(async(req,res) =>{
     const users = await User.find();
     if(!users){
         res.status(400);
-        throw new Error("Users were not feteched. ")
+        throw new Error("Users were not feteched.")
     }else{
         res.status(200).json(users);
     }
-});
+})
 
-export {getAllUsers, getUser, updateUser, deleteUser};
-
-
-
-
-
-
+export {getAllUsers, getUser, deleteUser,updateUser};
