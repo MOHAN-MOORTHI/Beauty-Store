@@ -1,11 +1,10 @@
-import { Typewriter } from 'react-simple-typewriter';
-
+import { Typewriter } from "react-simple-typewriter";
 
 const Announcement = () => {
   return (
-    <div className="flex items-center justify-center bg-[#e9acd9] text-white text-[18px] font-semibold h-[30px]">
+    <div className="flex items-center justify-center bg-black text-white text-[18px] font-semibold h-[30px]  ">
       <Typewriter
-        words={["Beauty", "Bliss", "Everything", "on", "Discout", "20% off"]}
+        words={["Beauty", "Bliss", "Everything", "On", "Discount", "20% offer"]}
         loop={5}
         cursor
         cursorStyle="_"
@@ -14,12 +13,7 @@ const Announcement = () => {
         delaySpeed={1000}
       />
     </div>
-  )
-}
+  );
+};
 
 export default Announcement;
-
-
-
-// npm i react-simple-typewriter
-

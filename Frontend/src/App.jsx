@@ -1,13 +1,12 @@
-import Home from "./pages/Home.jsx";
-import Cart from "./pages/Cart.jsx";
-import Myaccount from "./pages/Myaccount.jsx";
-import Announcement from "./components/Announcement.jsx";
-import Navbar from "./components/Navbar.jsx";
-import Footer from "./components/Footer.jsx";
-
+import Cart from "./pages/Cart";
+import Home from "./pages/Home";
 import { RouterProvider, createBrowserRouter, Outlet } from "react-router-dom";
+import Myaccount from "./pages/Myaccount";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Announcement from "./components/Announcement";
 
-function App() {
+const App = () => {
   const Layout = () => {
     return (
       <div>
@@ -18,6 +17,7 @@ function App() {
       </div>
     );
   };
+
   const router = createBrowserRouter([
     {
       path: "/",
@@ -44,6 +44,6 @@ function App() {
       <RouterProvider router={router} />
     </div>
   );
-}
+};
 
 export default App;
