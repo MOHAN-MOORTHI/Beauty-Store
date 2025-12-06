@@ -1,15 +1,17 @@
-
-
-
+import Product from "./Product";
 
 const Products = () => {
   return (
-    <div className='flex flex-wrap mx-[30px] '>
-        <div className='flex flex-col items-center justify-center h-[500px] m-5 cursor-pointer '>
-            <img src="/serum.jpg" alt="" className='h-[400px] w-[400px] bg-cover ' />
-        </div>
-    </div>
-  )
-}
+    <div className="flex flex-wrap mx-8 ">
 
-export default Products 
+      <Product img="/lotion.jpg" />
+      <Product img="/lotion1.jpg" />
+      <Product img="/lotion2.jpg" />
+      <Product img="/serum1.jpg" />
+     
+
+    </div>
+  );
+};
+
+export default Products;
