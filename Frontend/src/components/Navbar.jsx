@@ -33,12 +33,14 @@ const Navbar = () => {
           </div>
         </Link>
 
-        <div className="flex items-center cursor-pointer space-x-2 border border-pink-300 p-2 rounded-lg hover:bg-pink-100 duration-300">
-          <FaUser className="text-[#e455c5] hover:text-pink-600 transition duration-300 " />
-          <span className="text-[#e455c5] hover:text-pink-600 font-semibold ">
-            Login
-          </span>
-        </div>
+        <Link to="/login">
+          <div className="flex items-center cursor-pointer space-x-2 border border-pink-300 p-2 rounded-lg hover:bg-pink-100 duration-300">
+            <FaUser className="text-[#e455c5] hover:text-pink-600 transition duration-300 " />
+            <span className="text-[#e455c5] hover:text-pink-600 font-semibold ">
+              Login
+            </span>
+          </div>
+        </Link>
       </div>
     </div>
   );
