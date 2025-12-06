@@ -8,6 +8,8 @@ import Announcement from "./components/Announcement";
 import Product from "./pages/Product";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
+import ProductList from "./pages/ProductList";
+import Order from "./pages/Order";
 
 const App = () => {
   const Layout = () => {
@@ -47,8 +49,12 @@ const App = () => {
           element: <Myaccount />,
         },
         {
-          path: "/product/:productId",
-          element: <Product />,
+          path: "/products/:searchterm",
+          element: <ProductList />,
+        },
+        {
+          path: "/myorders",
+          element: <Order />,
         },
       ],
     },
