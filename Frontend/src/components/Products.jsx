@@ -1,0 +1,17 @@
+import Product from "./Product";
+
+const Products = () => {
+  return (
+    <div className="flex flex-wrap mx-8 ">
+
+      <Product img="/lotion.jpg" />
+      <Product img="/lotion1.jpg" />
+      <Product img="/lotion2.jpg" />
+      <Product img="/serum1.jpg" />
+     
+
+    </div>
+  );
+};
+
+export default Products;
